@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مكتبة دار الحديث</title>
+<title>ظ…ظƒطھط¨ط© ط¯ط§ط± ط§ظ„ط­ط¯ظٹط«</title>
 <style>
 :root{--p:#173b57;--s:#2d6a8a;--bg:#f3f6f8;--card:#fff;--line:#d9e2e8;--muted:#64748b;--danger:#b42318}
 *{box-sizing:border-box}
@@ -46,51 +46,51 @@ footer{text-align:center;padding:30px;color:#94a3b8}
 </head>
 <body>
 <header>
-<h1>📚 مكتبة دار الحديث</h1>
-<p>إضافة • بحث • فتح • تحميل • نقل • حذف • حفظ سحابي</p>
+<h1>ًں“ڑ ظ…ظƒطھط¨ط© ط¯ط§ط± ط§ظ„ط­ط¯ظٹط«</h1>
+<p>ط¥ط¶ط§ظپط© â€¢ ط¨ط­ط« â€¢ ظپطھط­ â€¢ طھط­ظ…ظٹظ„ â€¢ ظ†ظ‚ظ„ â€¢ ط­ط°ظپ â€¢ ط­ظپط¸ ط³ط­ط§ط¨ظٹ</p>
 <div id="authArea" style="margin-top:18px"></div>
 </header>
 
 <div class="wrap">
 <div class="top">
-<input id="search" class="search" placeholder="🔎 ابحث باسم الكتاب أو المؤلف أو القسم...">
+<input id="search" class="search" placeholder="ًں”ژ ط§ط¨ط­ط« ط¨ط§ط³ظ… ط§ظ„ظƒطھط§ط¨ ط£ظˆ ط§ظ„ظ…ط¤ظ„ظپ ط£ظˆ ط§ظ„ظ‚ط³ظ…...">
 </div>
 
 <div class="stats">
-<div class="stat">📚 الكتب: <b id="total">0</b></div>
-<div class="stat">📂 الأقسام: <b id="catCount">12</b></div>
-<div class="stat">🔎 النتائج: <b id="results">0</b></div>
+<div class="stat">ًں“ڑ ط§ظ„ظƒطھط¨: <b id="total">0</b></div>
+<div class="stat">ًں“‚ ط§ظ„ط£ظ‚ط³ط§ظ…: <b id="catCount">12</b></div>
+<div class="stat">ًں”ژ ط§ظ„ظ†طھط§ط¦ط¬: <b id="results">0</b></div>
 </div>
 
 <div id="sections" class="sections"></div>
 
 <div class="notice" id="notice">
-<strong>المكتبة السحابية:</strong> الكتب وملفات PDF تُحفظ في Supabase، لذلك تظهر لك من أي جهاز بعد تسجيل الدخول. لا تضع أي Secret Key هنا؛ نستخدم Publishable Key فقط.
+<strong>ط§ظ„ظ…ظƒطھط¨ط© ط§ظ„ط³ط­ط§ط¨ظٹط©:</strong> ط§ظ„ظƒطھط¨ ظˆظ…ظ„ظپط§طھ PDF طھظڈط­ظپط¸ ظپظٹ SupabaseطŒ ظ„ط°ظ„ظƒ طھط¸ظ‡ط± ظ„ظƒ ظ…ظ† ط£ظٹ ط¬ظ‡ط§ط² ط¨ط¹ط¯ طھط³ط¬ظٹظ„ ط§ظ„ط¯ط®ظˆظ„. ظ„ط§ طھط¶ط¹ ط£ظٹ Secret Key ظ‡ظ†ط§ط› ظ†ط³طھط®ط¯ظ… Publishable Key ظپظ‚ط·.
 </div>
 
 <div class="add">
-<div style="font-size:43px">📥</div>
-<h2>إضافة كتب PDF</h2>
-<p>اختر قسمًا ثم اسحب ملفات PDF أو اخترها من جهازك. يمكنك اختيار عدة كتب دفعة واحدة، وستبقى محفوظة في المكتبة.</p>
+<div style="font-size:43px">ًں“¥</div>
+<h2>ط¥ط¶ط§ظپط© ظƒطھط¨ PDF</h2>
+<p>ط§ط®طھط± ظ‚ط³ظ…ظ‹ط§ ط«ظ… ط§ط³ط­ط¨ ظ…ظ„ظپط§طھ PDF ط£ظˆ ط§ط®طھط±ظ‡ط§ ظ…ظ† ط¬ظ‡ط§ط²ظƒ. ظٹظ…ظƒظ†ظƒ ط§ط®طھظٹط§ط± ط¹ط¯ط© ظƒطھط¨ ط¯ظپط¹ط© ظˆط§ط­ط¯ط©طŒ ظˆط³طھط¨ظ‚ظ‰ ظ…ط­ظپظˆط¸ط© ظپظٹ ط§ظ„ظ…ظƒطھط¨ط©.</p>
 <div class="row">
 <select id="addCategory"></select>
-<label class="btn primary" for="picker">📎 اختيار ملفات PDF</label>
+<label class="btn primary" for="picker">ًں“ژ ط§ط®طھظٹط§ط± ظ…ظ„ظپط§طھ PDF</label>
 <input id="picker" type="file" accept=".pdf,application/pdf" multiple>
 </div>
-<div id="drop" class="drop">أو اسحب ملفات PDF وأفلتها هنا</div>
+<div id="drop" class="drop">ط£ظˆ ط§ط³ط­ط¨ ظ…ظ„ظپط§طھ PDF ظˆط£ظپظ„طھظ‡ط§ ظ‡ظ†ط§</div>
 </div>
 
 <div id="books" class="grid"></div>
 </div>
-<footer>مكتبة دار الحديث — نسخة سحابية عبر Supabase</footer>
+<footer>ظ…ظƒطھط¨ط© ط¯ط§ط± ط§ظ„ط­ط¯ظٹط« â€” ظ†ط³ط®ط© ط³ط­ط§ط¨ظٹط© ط¹ط¨ط± Supabase</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* =========================================================
-   إعدادات Supabase
-   Project URL تم وضعه لك.
-   ألصق Publishable Key فقط في السطر الثاني.
-   لا تضع Secret Key أو Service Role Key هنا.
+   ط¥ط¹ط¯ط§ط¯ط§طھ Supabase
+   Project URL طھظ… ظˆط¶ط¹ظ‡ ظ„ظƒ.
+   ط£ظ„طµظ‚ Publishable Key ظپظ‚ط· ظپظٹ ط§ظ„ط³ط·ط± ط§ظ„ط«ط§ظ†ظٹ.
+   ظ„ط§ طھط¶ط¹ Secret Key ط£ظˆ Service Role Key ظ‡ظ†ط§.
    ========================================================= */
 const SUPABASE_URL = "https://kbjjgfxrxmtzabwwbofp.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_GOATekKTTTB9u1GIOuov7Q_DmC2BpuK";
@@ -99,13 +99,14 @@ const { createClient } = supabase;
 const sb = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
 const categories=[
- ["كتب العقيدة","🕌"],["كتب الحديث","📜"],["كتب الفقه","⚖️"],["كتب السيرة","🌙"],
- ["كتب الفتاوى","📚"],["كتب التفسير","📖"],["كتب عامة","📘"],["كتب أصول الفقه","📝"],
- ["كتب اللغة العربية","✒️"],["كتب التزكية والآداب","🌿"],["كتب التراجم","👤"],["كتب متنوعة","📚"]
+ ["ظƒطھط¨ ط§ظ„ط¹ظ‚ظٹط¯ط©","ًں•Œ"],["ظƒطھط¨ ط§ظ„ط­ط¯ظٹط«","ًں“œ"],["ظƒطھط¨ ط§ظ„ظپظ‚ظ‡","âڑ–ï¸ڈ"],["ظƒطھط¨ ط§ظ„ط³ظٹط±ط©","ًںŒ™"],
+ ["ظƒطھط¨ ط§ظ„ظپطھط§ظˆظ‰","ًں“ڑ"],["ظƒطھط¨ ط§ظ„طھظپط³ظٹط±","ًں“–"],["ظƒطھط¨ ط¹ط§ظ…ط©","ًں“ک"],["ظƒطھط¨ ط£طµظˆظ„ ط§ظ„ظپظ‚ظ‡","ًں“‌"],
+ ["ظƒطھط¨ ط§ظ„ظ„ط؛ط© ط§ظ„ط¹ط±ط¨ظٹط©","âœ’ï¸ڈ"],["ظƒطھط¨ ط§ظ„طھط²ظƒظٹط© ظˆط§ظ„ط¢ط¯ط§ط¨","ًںŒ؟"],["ظƒطھط¨ ط§ظ„طھط±ط§ط¬ظ…","ًں‘¤"],["ظƒطھط¨ ظ…طھظ†ظˆط¹ط©","ًں“ڑ"]
 ];
 
-let currentCategory="الكل";
+let currentCategory="ط§ظ„ظƒظ„";
 let currentUser=null;
+let recoveryMode=false;
 
 function esc(s){
  return String(s||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
@@ -116,41 +117,78 @@ function fillCategories(){
  const sel=document.getElementById("addCategory");
  sel.innerHTML=categories.map(c=>`<option value="${esc(c[0])}">${c[1]} ${esc(c[0])}</option>`).join("");
  const sec=document.getElementById("sections");
- sec.innerHTML=`<div class="section ${currentCategory==="الكل"?"active":""}" onclick="setCategory('الكل')"><div class="ico">🏠</div><b>جميع الكتب</b><small>عرض الكل</small></div>`;
+ sec.innerHTML=`<div class="section ${currentCategory==="ط§ظ„ظƒظ„"?"active":""}" onclick="setCategory('ط§ظ„ظƒظ„')"><div class="ico">ًںڈ </div><b>ط¬ظ…ظٹط¹ ط§ظ„ظƒطھط¨</b><small>ط¹ط±ط¶ ط§ظ„ظƒظ„</small></div>`;
  categories.forEach(c=>{
-  sec.innerHTML+=`<div class="section ${currentCategory===c[0]?"active":""}" onclick="setCategory('${jsesc(c[0])}')"><div class="ico">${c[1]}</div><b>${esc(c[0])}</b><small>الدخول للقسم</small></div>`;
+  sec.innerHTML+=`<div class="section ${currentCategory===c[0]?"active":""}" onclick="setCategory('${jsesc(c[0])}')"><div class="ico">${c[1]}</div><b>${esc(c[0])}</b><small>ط§ظ„ط¯ط®ظˆظ„ ظ„ظ„ظ‚ط³ظ…</small></div>`;
  });
 }
 
 function renderAuth(){
  const area=document.getElementById("authArea");
- if(!currentUser){
+ if(recoveryMode){
+  area.innerHTML=`
+   <div style="background:#ffffff18;border-radius:12px;padding:16px;max-width:620px;margin:auto">
+    <div style="font-size:20px;font-weight:bold;margin-bottom:10px">ًں”‘ طھط¹ظٹظٹظ† ظƒظ„ظ…ط© ظ…ط±ظˆط± ط¬ط¯ظٹط¯ط©</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+     <input id="newPassword" type="password" placeholder="ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط± ط§ظ„ط¬ط¯ظٹط¯ط©" autocomplete="new-password"
+       style="padding:11px;border:0;border-radius:8px;min-width:230px;font-family:inherit">
+     <input id="confirmPassword" type="password" placeholder="طھط£ظƒظٹط¯ ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±" autocomplete="new-password"
+       style="padding:11px;border:0;border-radius:8px;min-width:230px;font-family:inherit">
+     <button class="btn primary" onclick="updatePassword()">ًں’¾ ط­ظپط¸ ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±</button>
+    </div>
+    <div style="margin-top:9px;font-size:12px;opacity:.9">ط§ظƒطھط¨ ظƒظ„ظ…ط© ظ…ط±ظˆط± ظ„ط§ طھظ‚ظ„ ط¹ظ† 6 ط£ط­ط±ظپ ط«ظ… ط§ط¶ط؛ط· ط­ظپط¸.</div>
+   </div>`;
+ }else if(!currentUser){
   area.innerHTML=`
    <div style="background:#ffffff18;border-radius:12px;padding:12px;max-width:620px;margin:auto">
     <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-     <input id="loginEmail" type="email" placeholder="البريد الإلكتروني"
+     <input id="loginEmail" type="email" placeholder="ط§ظ„ط¨ط±ظٹط¯ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ"
        style="padding:11px;border:0;border-radius:8px;min-width:230px;font-family:inherit">
-     <input id="loginPassword" type="password" placeholder="كلمة المرور"
+     <input id="loginPassword" type="password" placeholder="ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±"
        style="padding:11px;border:0;border-radius:8px;min-width:200px;font-family:inherit">
-     <button class="btn primary" onclick="login()">🔐 دخول</button>
+     <button class="btn primary" onclick="login()">ًں”گ ط¯ط®ظˆظ„</button>
     </div>
-    <div style="margin-top:8px;font-size:12px;opacity:.9">هذه المكتبة خاصة بالحساب المصرح له.</div>
+    <div style="margin-top:8px;font-size:12px;opacity:.9">ظ‡ط°ظ‡ ط§ظ„ظ…ظƒطھط¨ط© ط®ط§طµط© ط¨ط§ظ„ط­ط³ط§ط¨ ط§ظ„ظ…طµط±ط­ ظ„ظ‡.</div>
+    <button class="btn secondary" style="margin-top:9px" onclick="sendRecovery()">ًں“§ ظ†ط³ظٹطھ ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±طں</button>
    </div>`;
  }else{
   area.innerHTML=`
    <div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap">
-    <span style="background:#ffffff18;padding:9px 13px;border-radius:8px">👤 ${esc(currentUser.email)}</span>
-    <button class="btn secondary" onclick="logout()">تسجيل الخروج</button>
+    <span style="background:#ffffff18;padding:9px 13px;border-radius:8px">ًں‘¤ ${esc(currentUser.email)}</span>
+    <button class="btn secondary" onclick="logout()">طھط³ط¬ظٹظ„ ط§ظ„ط®ط±ظˆط¬</button>
    </div>`;
  }
+}
+
+async function sendRecovery(){
+ const email=document.getElementById("loginEmail").value.trim();
+ if(!email){alert("ط§ظƒطھط¨ ط¨ط±ظٹط¯ظƒ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ ط£ظˆظ„ظ‹ط§.");return;}
+ const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+window.location.pathname});
+ if(error){alert("طھط¹ط°ط± ط¥ط±ط³ط§ظ„ ط±ط§ط¨ط· ط¥ط¹ط§ط¯ط© ط§ظ„طھط¹ظٹظٹظ†: "+error.message);return;}
+ alert("طھظ… ط¥ط±ط³ط§ظ„ ط±ط§ط¨ط· ط¥ط¹ط§ط¯ط© طھط¹ظٹظٹظ† ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط± ط¥ظ„ظ‰ ط¨ط±ظٹط¯ظƒ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ.");
+}
+
+async function updatePassword(){
+ const p=document.getElementById("newPassword")?.value||"";
+ const c=document.getElementById("confirmPassword")?.value||"";
+ if(p.length<6){alert("ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط± ظٹط¬ط¨ ط£ظ† طھظƒظˆظ† 6 ط£ط­ط±ظپ ط¹ظ„ظ‰ ط§ظ„ط£ظ‚ظ„.");return;}
+ if(p!==c){alert("ظƒظ„ظ…طھط§ ط§ظ„ظ…ط±ظˆط± ط؛ظٹط± ظ…طھط·ط§ط¨ظ‚طھظٹظ†.");return;}
+ const {error}=await sb.auth.updateUser({password:p});
+ if(error){alert("طھط¹ط°ط± طھط­ط¯ظٹط« ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±: "+error.message);return;}
+ recoveryMode=false;
+ await sb.auth.signOut();
+ currentUser=null;
+ renderAuth();
+ document.getElementById("books").innerHTML='<div class="empty">âœ… طھظ… طھط؛ظٹظٹط± ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط± ط¨ظ†ط¬ط§ط­. ط³ط¬ظ‘ظ„ ط§ظ„ط¯ط®ظˆظ„ ط¨ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط± ط§ظ„ط¬ط¯ظٹط¯ط©.</div>';
+ alert("طھظ… طھط؛ظٹظٹط± ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط± ط¨ظ†ط¬ط§ط­. ظٹظ…ظƒظ†ظƒ ط§ظ„ط¢ظ† طھط³ط¬ظٹظ„ ط§ظ„ط¯ط®ظˆظ„.");
 }
 
 async function login(){
  const email=document.getElementById("loginEmail").value.trim();
  const password=document.getElementById("loginPassword").value;
- if(!email||!password){alert("أدخل البريد الإلكتروني وكلمة المرور.");return;}
+ if(!email||!password){alert("ط£ط¯ط®ظ„ ط§ظ„ط¨ط±ظٹط¯ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ ظˆظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±.");return;}
  const {data,error}=await sb.auth.signInWithPassword({email,password});
- if(error){alert("تعذر تسجيل الدخول: "+error.message);return;}
+ if(error){alert("طھط¹ط°ط± طھط³ط¬ظٹظ„ ط§ظ„ط¯ط®ظˆظ„: "+error.message);return;}
  currentUser=data.user;
  renderAuth();
  await render();
@@ -160,7 +198,7 @@ async function logout(){
  await sb.auth.signOut();
  currentUser=null;
  renderAuth();
- document.getElementById("books").innerHTML='<div class="empty">🔐 سجّل الدخول لعرض المكتبة.</div>';
+ document.getElementById("books").innerHTML='<div class="empty">ًں”گ ط³ط¬ظ‘ظ„ ط§ظ„ط¯ط®ظˆظ„ ظ„ط¹ط±ط¶ ط§ظ„ظ…ظƒطھط¨ط©.</div>';
  document.getElementById("total").textContent="0";
  document.getElementById("results").textContent="0";
 }
@@ -170,16 +208,16 @@ async function loadSession(){
  currentUser=data.session?.user || null;
  renderAuth();
  if(currentUser) await render();
- else document.getElementById("books").innerHTML='<div class="empty">🔐 سجّل الدخول لعرض المكتبة.</div>';
+ else document.getElementById("books").innerHTML='<div class="empty">ًں”گ ط³ط¬ظ‘ظ„ ط§ظ„ط¯ط®ظˆظ„ ظ„ط¹ط±ط¶ ط§ظ„ظ…ظƒطھط¨ط©.</div>';
 }
 
 async function render(){
  if(!currentUser)return;
  const {data:all,error}=await sb.from("books").select("*").order("created_at",{ascending:false});
- if(error){alert("تعذر قراءة الكتب: "+error.message);return;}
+ if(error){alert("طھط¹ط°ط± ظ‚ط±ط§ط،ط© ط§ظ„ظƒطھط¨: "+error.message);return;}
  const q=document.getElementById("search").value.trim().toLowerCase();
  const list=(all||[]).filter(b=>{
-  const catOk=currentCategory==="الكل"||b.category===currentCategory;
+  const catOk=currentCategory==="ط§ظ„ظƒظ„"||b.category===currentCategory;
   const text=(b.title+" "+(b.author||"")+" "+b.category).toLowerCase();
   return catOk && (!q||text.includes(q));
  });
@@ -188,33 +226,33 @@ async function render(){
  document.getElementById("results").textContent=list.length;
 
  document.querySelectorAll(".section").forEach((el,i)=>{
-  if(i===0){el.querySelector("small").textContent=(all||[]).length+" كتاب";return}
+  if(i===0){el.querySelector("small").textContent=(all||[]).length+" ظƒطھط§ط¨";return}
   const c=categories[i-1][0];
-  el.querySelector("small").textContent=(all||[]).filter(b=>b.category===c).length+" كتاب";
+  el.querySelector("small").textContent=(all||[]).filter(b=>b.category===c).length+" ظƒطھط§ط¨";
  });
 
  const box=document.getElementById("books");
  box.innerHTML="";
- if(!list.length){box.innerHTML='<div class="empty">📭 لا توجد كتب في هذا القسم أو تطابق البحث.</div>';return;}
+ if(!list.length){box.innerHTML='<div class="empty">ًں“­ ظ„ط§ طھظˆط¬ط¯ ظƒطھط¨ ظپظٹ ظ‡ط°ط§ ط§ظ„ظ‚ط³ظ… ط£ظˆ طھط·ط§ط¨ظ‚ ط§ظ„ط¨ط­ط«.</div>';return;}
 
  list.forEach(b=>{
   const card=document.createElement("div");
   card.className="card";
   card.innerHTML=`
-   <div class="icon">📕</div>
+   <div class="icon">ًں“•</div>
    <h3>${esc(b.title)}</h3>
-   <div class="meta">${esc(b.author||"")}<br>📂 ${esc(b.category)}</div>
+   <div class="meta">${esc(b.author||"")}<br>ًں“‚ ${esc(b.category)}</div>
    <div class="actions">
-    <button class="open" onclick="openPDF('${b.id}')">📖 فتح الكتاب</button>
-    <button class="download" onclick="downloadPDF('${b.id}')">⬇️ تحميل</button>
+    <button class="open" onclick="openPDF('${b.id}')">ًں“– ظپطھط­ ط§ظ„ظƒطھط§ط¨</button>
+    <button class="download" onclick="downloadPDF('${b.id}')">â¬‡ï¸ڈ طھط­ظ…ظٹظ„</button>
    </div>
    <div class="manage">
-    <button class="move" onclick="toggleMove('${b.id}')">📂 نقل إلى قسم</button>
-    <button class="del" onclick="removeBook('${b.id}')">🗑️ حذف نهائي</button>
+    <button class="move" onclick="toggleMove('${b.id}')">ًں“‚ ظ†ظ‚ظ„ ط¥ظ„ظ‰ ظ‚ط³ظ…</button>
+    <button class="del" onclick="removeBook('${b.id}')">ًں—‘ï¸ڈ ط­ط°ظپ ظ†ظ‡ط§ط¦ظٹ</button>
    </div>
    <div class="movebox" id="move-${b.id}">
     <select id="sel-${b.id}">${categories.map(c=>`<option value="${esc(c[0])}" ${c[0]===b.category?"selected":""}>${c[1]} ${esc(c[0])}</option>`).join("")}</select>
-    <button class="primary btn" onclick="moveBook('${b.id}')">حفظ النقل</button>
+    <button class="primary btn" onclick="moveBook('${b.id}')">ط­ظپط¸ ط§ظ„ظ†ظ‚ظ„</button>
    </div>`;
   box.appendChild(card);
  });
@@ -222,7 +260,7 @@ async function render(){
 
 async function getBook(id){
  const {data,error}=await sb.from("books").select("*").eq("id",id).single();
- if(error){alert("تعذر العثور على الكتاب: "+error.message);return null;}
+ if(error){alert("طھط¹ط°ط± ط§ظ„ط¹ط«ظˆط± ط¹ظ„ظ‰ ط§ظ„ظƒطھط§ط¨: "+error.message);return null;}
  return data;
 }
 
@@ -242,7 +280,7 @@ async function openPDF(id){
   a.href=url;a.target="_blank";a.rel="noopener";
   document.body.appendChild(a);a.click();a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),120000);
- }catch(e){alert("تعذر فتح الكتاب: "+e.message);}
+ }catch(e){alert("طھط¹ط°ط± ظپطھط­ ط§ظ„ظƒطھط§ط¨: "+e.message);}
 }
 
 async function downloadPDF(id){
@@ -252,10 +290,10 @@ async function downloadPDF(id){
   const blob=await getBookBlob(b);
   const url=URL.createObjectURL(blob);
   const a=document.createElement("a");
-  a.href=url;a.download=(b.title||"كتاب")+".pdf";a.style.display="none";
+  a.href=url;a.download=(b.title||"ظƒطھط§ط¨")+".pdf";a.style.display="none";
   document.body.appendChild(a);a.click();
   setTimeout(()=>{a.remove();URL.revokeObjectURL(url)},30000);
- }catch(e){alert("تعذر تحميل الكتاب: "+e.message);}
+ }catch(e){alert("طھط¹ط°ط± طھط­ظ…ظٹظ„ ط§ظ„ظƒطھط§ط¨: "+e.message);}
 }
 
 function toggleMove(id){
@@ -266,27 +304,27 @@ function toggleMove(id){
 async function moveBook(id){
  const category=document.getElementById("sel-"+id).value;
  const {error}=await sb.from("books").update({category,updated_at:new Date().toISOString()}).eq("id",id);
- if(error){alert("تعذر نقل الكتاب: "+error.message);return;}
+ if(error){alert("طھط¹ط°ط± ظ†ظ‚ظ„ ط§ظ„ظƒطھط§ط¨: "+error.message);return;}
  await render();
 }
 
 async function removeBook(id){
  const b=await getBook(id);if(!b)return;
- if(!confirm("سيتم حذف «"+b.title+"» نهائيًا من السحابة. هل أنت متأكد؟"))return;
+ if(!confirm("ط³ظٹطھظ… ط­ط°ظپ آ«"+b.title+"آ» ظ†ظ‡ط§ط¦ظٹظ‹ط§ ظ…ظ† ط§ظ„ط³ط­ط§ط¨ط©. ظ‡ظ„ ط£ظ†طھ ظ…طھط£ظƒط¯طں"))return;
 
  const {error:fileError}=await sb.storage.from("books").remove([b.file_path]);
- if(fileError){alert("تعذر حذف ملف PDF: "+fileError.message);return;}
+ if(fileError){alert("طھط¹ط°ط± ط­ط°ظپ ظ…ظ„ظپ PDF: "+fileError.message);return;}
 
  const {error:dbError}=await sb.from("books").delete().eq("id",id);
- if(dbError){alert("تم حذف الملف لكن تعذر حذف سجل الكتاب: "+dbError.message);return;}
+ if(dbError){alert("طھظ… ط­ط°ظپ ط§ظ„ظ…ظ„ظپ ظ„ظƒظ† طھط¹ط°ط± ط­ط°ظپ ط³ط¬ظ„ ط§ظ„ظƒطھط§ط¨: "+dbError.message);return;}
  await render();
 }
 
 async function addFiles(files){
- if(!currentUser){alert("سجّل الدخول أولًا.");return;}
+ if(!currentUser){alert("ط³ط¬ظ‘ظ„ ط§ظ„ط¯ط®ظˆظ„ ط£ظˆظ„ظ‹ط§.");return;}
  const category=document.getElementById("addCategory").value;
  const pdfs=[...files].filter(f=>f.type==="application/pdf"||f.name.toLowerCase().endsWith(".pdf"));
- if(!pdfs.length){alert("اختر ملفات PDF فقط.");return;}
+ if(!pdfs.length){alert("ط§ط®طھط± ظ…ظ„ظپط§طھ PDF ظپظ‚ط·.");return;}
 
  let added=0;
  for(const f of pdfs){
@@ -315,11 +353,11 @@ async function addFiles(files){
    }
    added++;
   }catch(e){
-   alert("تعذر رفع «"+f.name+"»: "+e.message);
+   alert("طھط¹ط°ط± ط±ظپط¹ آ«"+f.name+"آ»: "+e.message);
   }
  }
  await render();
- if(added)alert("تم رفع "+added+" كتاب إلى السحابة في قسم «"+category+"».");
+ if(added)alert("طھظ… ط±ظپط¹ "+added+" ظƒطھط§ط¨ ط¥ظ„ظ‰ ط§ظ„ط³ط­ط§ط¨ط© ظپظٹ ظ‚ط³ظ… آ«"+category+"آ».");
 }
 
 document.getElementById("picker").addEventListener("change",e=>{addFiles(e.target.files);e.target.value=""});
@@ -333,9 +371,11 @@ function setCategory(c){currentCategory=c;fillCategories();render();window.scrol
 fillCategories();
 loadSession();
 sb.auth.onAuthStateChange((_event,session)=>{
+ if(_event==="PASSWORD_RECOVERY") recoveryMode=true;
+ if(_event==="SIGNED_OUT") recoveryMode=false;
  currentUser=session?.user||null;
  renderAuth();
- if(currentUser)render();
+ if(currentUser && !recoveryMode)render();
 });
 </script>
 </body>
