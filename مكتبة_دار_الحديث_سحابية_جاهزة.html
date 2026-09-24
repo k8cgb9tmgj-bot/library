@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مكتبة دار الحديث</title>
+<style>
+:root{--p:#173b57;--s:#2d6a8a;--bg:#f3f6f8;--card:#fff;--line:#d9e2e8;--muted:#64748b;--danger:#b42318}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#1e293b;font-family:Tahoma,Arial,sans-serif}
+header{background:linear-gradient(135deg,#102f46,#2d6a8a);color:#fff;text-align:center;padding:35px 18px}
+header h1{margin:0 0 8px;font-size:31px} header p{margin:0;opacity:.9}
+.wrap{max-width:1200px;margin:auto;padding:24px 18px}
+.top{position:sticky;top:0;z-index:20;background:rgba(243,246,248,.97);padding:8px 0 16px}
+.search{width:100%;padding:15px 18px;border:1px solid var(--line);border-radius:13px;font-size:16px;outline:0}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 20px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px;color:var(--muted)}
+.sections{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px;margin-bottom:24px}
+.section{background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px;cursor:pointer;transition:.15s}
+.section:hover,.section.active{border-color:var(--s);box-shadow:0 4px 12px #0001}
+.section .ico{font-size:28px}.section b{display:block;margin-top:7px}.section small{color:var(--muted)}
+.add{background:#fff;border:2px dashed #9db1bf;border-radius:16px;padding:23px;text-align:center;margin-bottom:24px}
+.add h2{margin:5px 0 8px}.add p{color:var(--muted);line-height:1.8;margin:5px auto 16px}
+.row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+input[type=file]{display:none}
+.btn{border:0;border-radius:9px;padding:11px 16px;cursor:pointer;font-family:inherit;font-size:14px}
+.primary{background:var(--p);color:#fff}.secondary{background:#eef4f7;color:var(--p)}
+select{padding:11px;border:1px solid var(--line);border-radius:9px;background:#fff;font-family:inherit;min-width:220px}
+.drop{margin:14px auto 0;max-width:700px;border:2px dashed #c6d2da;border-radius:11px;padding:15px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:17px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 3px 10px #00000009}
+.icon{font-size:39px}.card h3{margin:8px 0 5px;line-height:1.5}.meta{color:var(--muted);font-size:13px;min-height:35px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:14px}
+.actions button,.actions a{border:0;border-radius:8px;padding:10px;text-align:center;text-decoration:none;cursor:pointer;font-family:inherit;font-size:13px}
+.open{background:var(--s);color:#fff}.download{background:var(--p);color:#fff}
+.manage{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}
+.manage button{border:0;border-radius:8px;padding:9px;cursor:pointer;font-family:inherit}
+.move{background:#eef4f7;color:var(--p)}.del{background:#fff0ef;color:var(--danger)}
+.movebox{display:none;margin-top:8px;padding:10px;background:#f8fafb;border:1px solid var(--line);border-radius:9px}
+.movebox select{width:100%;min-width:0}.movebox button{width:100%;margin-top:7px}
+.empty{text-align:center;background:#fff;border-radius:14px;padding:45px;color:var(--muted);grid-column:1/-1}
+.notice{background:#fff7e6;border:1px solid #f2d28a;border-radius:11px;padding:13px;margin-bottom:20px;line-height:1.8;color:#765515}
+footer{text-align:center;padding:30px;color:#94a3b8}
+@media(max-width:600px){header h1{font-size:25px}.sections{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header>
+<h1>📚 مكتبة دار الحديث</h1>
+<p>إضافة • بحث • فتح • تحميل • نقل • حذف • حفظ سحابي</p>
+<div id="authArea" style="margin-top:18px"></div>
+</header>
+
+<div class="wrap">
+<div class="top">
+<input id="search" class="search" placeholder="🔎 ابحث باسم الكتاب أو المؤلف أو القسم...">
+</div>
+
+<div class="stats">
+<div class="stat">📚 الكتب: <b id="total">0</b></div>
+<div class="stat">📂 الأقسام: <b id="catCount">12</b></div>
+<div class="stat">🔎 النتائج: <b id="results">0</b></div>
+</div>
+
+<div id="sections" class="sections"></div>
+
+<div class="notice" id="notice">
+<strong>المكتبة السحابية:</strong> الكتب وملفات PDF تُحفظ في Supabase، لذلك تظهر لك من أي جهاز بعد تسجيل الدخول. لا تضع أي Secret Key هنا؛ نستخدم Publishable Key فقط.
+</div>
+
+<div class="add">
+<div style="font-size:43px">📥</div>
+<h2>إضافة كتب PDF</h2>
+<p>اختر قسمًا ثم اسحب ملفات PDF أو اخترها من جهازك. يمكنك اختيار عدة كتب دفعة واحدة، وستبقى محفوظة في المكتبة.</p>
+<div class="row">
+<select id="addCategory"></select>
+<label class="btn primary" for="picker">📎 اختيار ملفات PDF</label>
+<input id="picker" type="file" accept=".pdf,application/pdf" multiple>
+</div>
+<div id="drop" class="drop">أو اسحب ملفات PDF وأفلتها هنا</div>
+</div>
+
+<div id="books" class="grid"></div>
+</div>
+<footer>مكتبة دار الحديث — نسخة سحابية عبر Supabase</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* =========================================================
+   إعدادات Supabase
+   Project URL تم وضعه لك.
+   ألصق Publishable Key فقط في السطر الثاني.
+   لا تضع Secret Key أو Service Role Key هنا.
+   ========================================================= */
+const SUPABASE_URL = "https://kbjjgfxrxmtzabwwbofp.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_GOATekKTTTB9u1GIOuov7Q_DmC2BpuK";
+
+const { createClient } = supabase;
+const sb = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+const categories=[
+ ["كتب العقيدة","🕌"],["كتب الحديث","📜"],["كتب الفقه","⚖️"],["كتب السيرة","🌙"],
+ ["كتب الفتاوى","📚"],["كتب التفسير","📖"],["كتب عامة","📘"],["كتب أصول الفقه","📝"],
+ ["كتب اللغة العربية","✒️"],["كتب التزكية والآداب","🌿"],["كتب التراجم","👤"],["كتب متنوعة","📚"]
+];
+
+let currentCategory="الكل";
+let currentUser=null;
+
+function esc(s){
+ return String(s||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
+}
+function jsesc(s){return String(s).replaceAll("\\","\\\\").replaceAll("'","\\'");}
+
+function fillCategories(){
+ const sel=document.getElementById("addCategory");
+ sel.innerHTML=categories.map(c=>`<option value="${esc(c[0])}">${c[1]} ${esc(c[0])}</option>`).join("");
+ const sec=document.getElementById("sections");
+ sec.innerHTML=`<div class="section ${currentCategory==="الكل"?"active":""}" onclick="setCategory('الكل')"><div class="ico">🏠</div><b>جميع الكتب</b><small>عرض الكل</small></div>`;
+ categories.forEach(c=>{
+  sec.innerHTML+=`<div class="section ${currentCategory===c[0]?"active":""}" onclick="setCategory('${jsesc(c[0])}')"><div class="ico">${c[1]}</div><b>${esc(c[0])}</b><small>الدخول للقسم</small></div>`;
+ });
+}
+
+function renderAuth(){
+ const area=document.getElementById("authArea");
+ if(!currentUser){
+  area.innerHTML=`
+   <div style="background:#ffffff18;border-radius:12px;padding:12px;max-width:620px;margin:auto">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+     <input id="loginEmail" type="email" placeholder="البريد الإلكتروني"
+       style="padding:11px;border:0;border-radius:8px;min-width:230px;font-family:inherit">
+     <input id="loginPassword" type="password" placeholder="كلمة المرور"
+       style="padding:11px;border:0;border-radius:8px;min-width:200px;font-family:inherit">
+     <button class="btn primary" onclick="login()">🔐 دخول</button>
+    </div>
+    <div style="margin-top:8px;font-size:12px;opacity:.9">هذه المكتبة خاصة بالحساب المصرح له.</div>
+   </div>`;
+ }else{
+  area.innerHTML=`
+   <div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap">
+    <span style="background:#ffffff18;padding:9px 13px;border-radius:8px">👤 ${esc(currentUser.email)}</span>
+    <button class="btn secondary" onclick="logout()">تسجيل الخروج</button>
+   </div>`;
+ }
+}
+
+async function login(){
+ const email=document.getElementById("loginEmail").value.trim();
+ const password=document.getElementById("loginPassword").value;
+ if(!email||!password){alert("أدخل البريد الإلكتروني وكلمة المرور.");return;}
+ const {data,error}=await sb.auth.signInWithPassword({email,password});
+ if(error){alert("تعذر تسجيل الدخول: "+error.message);return;}
+ currentUser=data.user;
+ renderAuth();
+ await render();
+}
+
+async function logout(){
+ await sb.auth.signOut();
+ currentUser=null;
+ renderAuth();
+ document.getElementById("books").innerHTML='<div class="empty">🔐 سجّل الدخول لعرض المكتبة.</div>';
+ document.getElementById("total").textContent="0";
+ document.getElementById("results").textContent="0";
+}
+
+async function loadSession(){
+ const {data}=await sb.auth.getSession();
+ currentUser=data.session?.user || null;
+ renderAuth();
+ if(currentUser) await render();
+ else document.getElementById("books").innerHTML='<div class="empty">🔐 سجّل الدخول لعرض المكتبة.</div>';
+}
+
+async function render(){
+ if(!currentUser)return;
+ const {data:all,error}=await sb.from("books").select("*").order("created_at",{ascending:false});
+ if(error){alert("تعذر قراءة الكتب: "+error.message);return;}
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ const list=(all||[]).filter(b=>{
+  const catOk=currentCategory==="الكل"||b.category===currentCategory;
+  const text=(b.title+" "+(b.author||"")+" "+b.category).toLowerCase();
+  return catOk && (!q||text.includes(q));
+ });
+
+ document.getElementById("total").textContent=(all||[]).length;
+ document.getElementById("results").textContent=list.length;
+
+ document.querySelectorAll(".section").forEach((el,i)=>{
+  if(i===0){el.querySelector("small").textContent=(all||[]).length+" كتاب";return}
+  const c=categories[i-1][0];
+  el.querySelector("small").textContent=(all||[]).filter(b=>b.category===c).length+" كتاب";
+ });
+
+ const box=document.getElementById("books");
+ box.innerHTML="";
+ if(!list.length){box.innerHTML='<div class="empty">📭 لا توجد كتب في هذا القسم أو تطابق البحث.</div>';return;}
+
+ list.forEach(b=>{
+  const card=document.createElement("div");
+  card.className="card";
+  card.innerHTML=`
+   <div class="icon">📕</div>
+   <h3>${esc(b.title)}</h3>
+   <div class="meta">${esc(b.author||"")}<br>📂 ${esc(b.category)}</div>
+   <div class="actions">
+    <button class="open" onclick="openPDF('${b.id}')">📖 فتح الكتاب</button>
+    <button class="download" onclick="downloadPDF('${b.id}')">⬇️ تحميل</button>
+   </div>
+   <div class="manage">
+    <button class="move" onclick="toggleMove('${b.id}')">📂 نقل إلى قسم</button>
+    <button class="del" onclick="removeBook('${b.id}')">🗑️ حذف نهائي</button>
+   </div>
+   <div class="movebox" id="move-${b.id}">
+    <select id="sel-${b.id}">${categories.map(c=>`<option value="${esc(c[0])}" ${c[0]===b.category?"selected":""}>${c[1]} ${esc(c[0])}</option>`).join("")}</select>
+    <button class="primary btn" onclick="moveBook('${b.id}')">حفظ النقل</button>
+   </div>`;
+  box.appendChild(card);
+ });
+}
+
+async function getBook(id){
+ const {data,error}=await sb.from("books").select("*").eq("id",id).single();
+ if(error){alert("تعذر العثور على الكتاب: "+error.message);return null;}
+ return data;
+}
+
+async function getBookBlob(book){
+ const {data,error}=await sb.storage.from("books").download(book.file_path);
+ if(error)throw error;
+ return data;
+}
+
+async function openPDF(id){
+ const b=await getBook(id);
+ if(!b)return;
+ try{
+  const blob=await getBookBlob(b);
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.target="_blank";a.rel="noopener";
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),120000);
+ }catch(e){alert("تعذر فتح الكتاب: "+e.message);}
+}
+
+async function downloadPDF(id){
+ const b=await getBook(id);
+ if(!b)return;
+ try{
+  const blob=await getBookBlob(b);
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download=(b.title||"كتاب")+".pdf";a.style.display="none";
+  document.body.appendChild(a);a.click();
+  setTimeout(()=>{a.remove();URL.revokeObjectURL(url)},30000);
+ }catch(e){alert("تعذر تحميل الكتاب: "+e.message);}
+}
+
+function toggleMove(id){
+ const x=document.getElementById("move-"+id);
+ x.style.display=x.style.display==="block"?"none":"block";
+}
+
+async function moveBook(id){
+ const category=document.getElementById("sel-"+id).value;
+ const {error}=await sb.from("books").update({category,updated_at:new Date().toISOString()}).eq("id",id);
+ if(error){alert("تعذر نقل الكتاب: "+error.message);return;}
+ await render();
+}
+
+async function removeBook(id){
+ const b=await getBook(id);if(!b)return;
+ if(!confirm("سيتم حذف «"+b.title+"» نهائيًا من السحابة. هل أنت متأكد؟"))return;
+
+ const {error:fileError}=await sb.storage.from("books").remove([b.file_path]);
+ if(fileError){alert("تعذر حذف ملف PDF: "+fileError.message);return;}
+
+ const {error:dbError}=await sb.from("books").delete().eq("id",id);
+ if(dbError){alert("تم حذف الملف لكن تعذر حذف سجل الكتاب: "+dbError.message);return;}
+ await render();
+}
+
+async function addFiles(files){
+ if(!currentUser){alert("سجّل الدخول أولًا.");return;}
+ const category=document.getElementById("addCategory").value;
+ const pdfs=[...files].filter(f=>f.type==="application/pdf"||f.name.toLowerCase().endsWith(".pdf"));
+ if(!pdfs.length){alert("اختر ملفات PDF فقط.");return;}
+
+ let added=0;
+ for(const f of pdfs){
+  try{
+   const id=crypto.randomUUID();
+   const safeName=f.name.replace(/[^\w\u0600-\u06FF.\- ]/g,"_");
+   const path=currentUser.id+"/"+id+"-"+safeName;
+
+   const {error:uploadError}=await sb.storage.from("books").upload(path,f,{
+    contentType:"application/pdf",
+    upsert:false
+   });
+   if(uploadError)throw uploadError;
+
+   const {error:insertError}=await sb.from("books").insert({
+    id,
+    title:f.name.replace(/\.pdf$/i,""),
+    author:"",
+    category,
+    file_path:path,
+    file_name:f.name
+   });
+   if(insertError){
+    await sb.storage.from("books").remove([path]);
+    throw insertError;
+   }
+   added++;
+  }catch(e){
+   alert("تعذر رفع «"+f.name+"»: "+e.message);
+  }
+ }
+ await render();
+ if(added)alert("تم رفع "+added+" كتاب إلى السحابة في قسم «"+category+"».");
+}
+
+document.getElementById("picker").addEventListener("change",e=>{addFiles(e.target.files);e.target.value=""});
+const drop=document.getElementById("drop");
+["dragenter","dragover"].forEach(x=>drop.addEventListener(x,e=>{e.preventDefault();drop.style.borderColor="#2d6a8a"}));
+["dragleave","drop"].forEach(x=>drop.addEventListener(x,e=>{e.preventDefault();drop.style.borderColor="#c6d2da"}));
+drop.addEventListener("drop",e=>addFiles(e.dataTransfer.files));
+document.getElementById("search").addEventListener("input",render);
+function setCategory(c){currentCategory=c;fillCategories();render();window.scrollTo({top:0,behavior:"smooth"});}
+
+fillCategories();
+loadSession();
+sb.auth.onAuthStateChange((_event,session)=>{
+ currentUser=session?.user||null;
+ renderAuth();
+ if(currentUser)render();
+});
+</script>
+</body>
+</html>
